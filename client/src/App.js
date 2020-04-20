@@ -6,20 +6,16 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+
+import LoginForm from "./components/LoginForm";
 import "./App.scss";
 
 function App() {
   return (
     <Router>
       <main className="App">
-        <header className="top">
-          <nav>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
-          </nav>
-        </header>
-
         <Switch>
+          <Route exact path="/login" component={LoginForm} />
           <Redirect to="/login" />
         </Switch>
       </main>
