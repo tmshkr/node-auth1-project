@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
+import axios from "../utils/axios";
 import "./LoginForm.scss";
 
 function LoginForm(props) {
@@ -12,7 +12,7 @@ function LoginForm(props) {
   const onSubmit = (values) => {
     setLoading(true);
     axios
-      .post("http://localhost:5000/api/login", values)
+      .post("/api/login", values)
       .then((res) => {
         console.log(res);
         history.push("/users");

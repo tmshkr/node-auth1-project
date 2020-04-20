@@ -19,7 +19,7 @@ const sessionConfig = {
 };
 
 server.use(helmet());
-server.use(cors());
+server.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 server.use(express.json());
 server.use(session(sessionConfig));
 server.use("/api/users", validateSession);
@@ -29,6 +29,8 @@ server.use(errorHandler);
 module.exports = server;
 
 function validateSession(req, res, next) {
+  console.log(req.sessionID);
+  console.log(req.session);
   if (!req.session.loggedIn) {
     return next({ code: 401, message: "You shall not pass!!!" });
   }

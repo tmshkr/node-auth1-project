@@ -7,6 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import UserList from "./components/UserList";
 import LoginForm from "./components/LoginForm";
 import "./App.scss";
 
@@ -15,6 +16,7 @@ function App() {
     <Router>
       <main className="App">
         <Switch>
+          <Route exact path="/users" component={UserList} />
           <Route exact path="/login" component={LoginForm} />
           <Redirect to="/login" />
         </Switch>
