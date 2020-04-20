@@ -1,11 +1,10 @@
 const express = require("express");
 
+const router = require("./api");
+
 const server = express();
 
 server.use(express.json());
-
-server.get("/", (req, res) => {
-  res.json({ api: "running..." });
-});
+server.use("/api", router);
 
 module.exports = server;
