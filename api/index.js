@@ -33,9 +33,10 @@ router.post("/login", (req, res) => {
 
   Users.findBy({ username })
     .then((user) => {
-      user && bcrypt.compareSync(password, user.password)
-        ? res.send("Welcome")
-        : res.status(401).send("You shall not pass");
+      if (user && bcrypt.compareSync(password, user.password)) {
+        req.session.loggedIn = true;
+        res.send("Welcome");
+      } else res.status(401).send("You shall not pass");
     })
     .catch((err) => {
       console.log(err);
