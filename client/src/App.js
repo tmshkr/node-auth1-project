@@ -17,6 +17,7 @@ function App() {
       <main className="App">
         <Switch>
           <Route exact path="/users" component={UserList} />
+          <Route exact path="/register" component={LoginForm} />
           <Route exact path="/login" component={LoginForm} />
           <Redirect to="/login" />
         </Switch>

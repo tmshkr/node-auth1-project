@@ -20,6 +20,7 @@ router.post("/register", (req, res) => {
 
   Users.add({ username, password: hash })
     .then(() => {
+      req.session.loggedIn = true;
       res.status(201).send("New user created");
     })
     .catch((err) => {

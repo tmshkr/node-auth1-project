@@ -8,11 +8,13 @@ function LoginForm(props) {
   const [loading, setLoading] = useState(false);
   const { history } = props;
   const { handleSubmit, register, errors, setError } = useForm();
+  const isRegistering = history.location.pathname === "/register";
 
   const onSubmit = (values) => {
     setLoading(true);
+    const url = isRegistering ? "/api/register" : "/api/login";
     axios
-      .post("/api/login", values)
+      .post(url, values)
       .then((res) => {
         console.log(res);
         history.push("/users");
@@ -57,16 +59,18 @@ function LoginForm(props) {
         {!loading && (
           <>
             <Button type="submit" color="primary" size="lg" block>
-              Login
+              {isRegistering ? "Register" : "Login"}
             </Button>
-            <Button
-              color="info"
-              size="lg"
-              block
-              onClick={() => history.push("/register")}
-            >
-              Sign Up
-            </Button>
+            {!isRegistering && (
+              <Button
+                color="info"
+                size="lg"
+                block
+                onClick={() => history.push("/register")}
+              >
+                Sign Up
+              </Button>
+            )}
           </>
         )}
       </form>
