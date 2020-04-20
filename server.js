@@ -26,7 +26,7 @@ module.exports = server;
 
 function validateSession(req, res, next) {
   if (!req.session.loggedIn) {
-    return next({ code: 404, message: "You shall not pass!!!" });
+    return next({ code: 401, message: "You shall not pass!!!" });
   }
   next();
 }
