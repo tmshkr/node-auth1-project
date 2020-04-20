@@ -28,6 +28,21 @@ router.post("/register", (req, res) => {
     });
 });
 
+router.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  Users.findBy({ username })
+    .then((user) => {
+      user && bcrypt.compareSync(password, user.password)
+        ? res.send("Welcome")
+        : res.status(401).send("You shall not pass");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("There was a problem logging in");
+    });
+});
+
 router.get("/", (req, res) => {
   res.json({ api: "running..." });
 });
