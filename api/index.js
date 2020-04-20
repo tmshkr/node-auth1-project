@@ -44,6 +44,11 @@ router.post("/login", (req, res) => {
     });
 });
 
+router.post("/logout", (req, res) => {
+  req.session.loggedIn = false;
+  res.send("Logged out");
+});
+
 router.get("/", (req, res) => {
   res.json({ api: "running..." });
 });
