@@ -1,5 +1,7 @@
 const express = require("express");
 const session = require("express-session");
+const helmet = require("helmet");
+const cors = require("cors");
 const server = express();
 
 const router = require("./api");
@@ -16,6 +18,8 @@ const sessionConfig = {
   },
 };
 
+server.use(helmet());
+server.use(cors());
 server.use(express.json());
 server.use(session(sessionConfig));
 server.use("/api/users", validateSession);
